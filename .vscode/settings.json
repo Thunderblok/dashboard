@@ -1,0 +1,18 @@
+{
+  "css.validate": false,
+  "postcss.validate": false,
+  "tailwindCSS.includeLanguages": {
+    "elixir": "html",
+    "eelixir": "html",
+    "heex": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    "class[:]\\s*\"([^\"]*)\""
+  ],
+  "emmet.includeLanguages": {
+    "elixir": "html",
+    "eelixir": "html", 
+    "heex": "html"
+  },
+  "css.customData": [".vscode/css_custom_data.json"]
+}

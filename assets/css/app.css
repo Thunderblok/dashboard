@@ -1,0 +1,399 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Thunderprism "Real-Talk" Neon Theme */
+@layer base {
+  html {
+    @apply h-full;
+  }
+  
+  body {
+    @apply h-full bg-bg text-white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0B0C10 0%, #1a1a1a 50%, #0B0C10 100%);
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00F5FF, #FF3BE7);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #FF3BE7, #A84BFF);
+  }
+}
+
+@layer components {
+  /* Thunderprism Logo Component */
+  .thunderprism-logo {
+    @apply relative w-32 h-32 mx-auto;
+  }
+  
+  .thunderprism-logo svg {
+    @apply w-full h-full drop-shadow-lg;
+    filter: drop-shadow(0 0 8px rgba(0, 245, 255, 0.6));
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  /* Neon Card Components */
+  .neon-card {
+    @apply bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl;
+    @apply border border-white/10 hover:border-neon-cyan/30 transition-all duration-300;
+    backdrop-filter: blur(12px) saturate(1.2);
+  }
+  
+  .neon-card-cyan {
+    @apply neon-card border-neon-cyan/20 hover:border-neon-cyan/40;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.1);
+  }
+  
+  .neon-card-magenta {  
+    @apply neon-card border-neon-magenta/20 hover:border-neon-magenta/40;
+    box-shadow: 0 0 20px rgba(255, 59, 231, 0.1);
+  }
+  
+  .neon-card-purple {
+    @apply neon-card border-neon-purple/20 hover:border-neon-purple/40;
+    box-shadow: 0 0 20px rgba(168, 75, 255, 0.1);
+  }
+  
+  .neon-card-orange {
+    @apply neon-card border-neon-orange/20 hover:border-neon-orange/40;
+    box-shadow: 0 0 20px rgba(255, 122, 0, 0.1);
+  }
+  
+  /* Resource Usage Bars */
+  .resource-bar {
+    @apply h-1.5 bg-gray-700 rounded-full overflow-hidden relative;
+  }
+  
+  .resource-bar-fill {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, var(--tw-gradient-from), var(--tw-gradient-to));
+    transition: width 0.8s ease-out;
+  }
+  
+  /* Terminal Window */
+  .terminal-window {
+    @apply bg-black/90 border border-gray-600 rounded-xl overflow-hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  }
+  
+  .terminal-header {
+    @apply flex items-center justify-between p-4 bg-gray-800 border-b border-gray-600;
+  }
+  
+  .terminal-controls {
+    @apply flex items-center space-x-2;
+  }
+  
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+  
+  .terminal-content {
+    @apply p-6 font-mono text-sm text-green-400;
+  }
+  
+  /* Activity Feed */
+  .activity-item {
+    @apply flex items-start space-x-3 p-3 bg-black/30 rounded-lg border border-gray-700/50;
+    @apply hover:border-gray-600 transition-colors;
+  }
+  
+  .activity-dot {
+    @apply w-2 h-2 rounded-full flex-shrink-0 mt-2;
+  }
+  
+  /* Network Visualization */
+  .network-canvas {
+    @apply relative h-80 bg-black/50 rounded-lg border border-gray-700 overflow-hidden;
+    background-image: 
+      radial-gradient(circle at 25px 25px, rgba(0, 245, 255, 0.2) 2px, transparent 0),
+      radial-gradient(circle at 75px 75px, rgba(255, 59, 231, 0.1) 1px, transparent 0);
+    background-size: 50px 50px;
+  }
+  
+  .network-node {
+    @apply absolute rounded-full flex items-center justify-center font-bold;
+    transition: all 0.3s ease;
+  }
+  
+  .network-node:hover {
+    transform: scale(1.1);
+  }
+  
+  .network-node-primary {
+    @apply w-16 h-16 bg-gradient-to-r from-neon-cyan to-neon-magenta text-black;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+    animation: pulse-neon 2s ease-in-out infinite alternate;
+  }
+  
+  .network-node-secondary {
+    @apply w-8 h-8 text-black text-xs;
+  }
+  
+  /* Input Styling */
+  .neon-input {
+    @apply w-full bg-black/50 border border-gray-600 rounded-lg px-4 py-3;
+    @apply text-white placeholder-gray-400 focus:border-neon-cyan focus:outline-none;
+    @apply transition-colors duration-300;
+  }
+  
+  .neon-input:focus {
+    box-shadow: 0 0 8px rgba(0, 245, 255, 0.3);
+  }
+  
+  /* Button Styling */
+  .neon-button {
+    @apply px-4 py-2 rounded font-medium hover:scale-105 transition-transform;
+    @apply bg-gradient-to-r from-neon-cyan to-neon-magenta text-black;
+  }
+  
+  .neon-button:hover {
+    box-shadow: 0 0 16px rgba(0, 245, 255, 0.4);
+  }
+  
+  /* Status Indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+  
+  .status-online {
+    @apply bg-green-400;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+  }
+  
+  .status-offline {
+    @apply bg-red-400;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+  }
+  
+  .status-warning {
+    @apply bg-yellow-400;
+    box-shadow: 0 0 8px rgba(255, 255, 0, 0.6);
+  }
+  
+  /* Text Effects */
+  .text-glow {
+    text-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+  }
+  
+  .text-glow-subtle {
+    text-shadow: 0 0 4px currentColor;
+  }
+}
+
+@layer components {
+  /* Neon Glow Effects */
+  .glow {
+    text-shadow: 0 0 4px #0ff, 0 0 8px #0ff;
+  }
+  
+  .glow-pink {
+    text-shadow: 0 0 4px #f0f, 0 0 8px #f0f;
+  }
+  
+  .glow-orange {
+    text-shadow: 0 0 4px #f60, 0 0 8px #f60;
+  }
+  
+  /* Interactive Button Glows */
+  .btn-glow {
+    @apply btn bg-primary text-black hover:bg-secondary transition-all duration-300;
+    box-shadow: 0 0 8px #0ff, 0 0 16px #0ff5;
+  }
+  
+  .btn-glow:hover {
+    box-shadow: 0 0 12px #0ff, 0 0 24px #0ff, 0 0 36px #0ff;
+    transform: translateY(-2px);
+  }
+  
+  /* Neon Borders */
+  .glow-border {
+    border: 2px solid transparent;
+    background-image: linear-gradient(#0a0a0a, #0a0a0a), linear-gradient(to right, #0ff, #f0f, #f60);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  
+  .glow-border:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  }
+  
+  /* Thunder Cards */
+  .thunder-card {
+    @apply card bg-base-200 shadow-xl glow-border;
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Terminal Style */
+  .thunder-terminal {
+    @apply bg-black border-2 border-glow-cyan rounded-lg p-4 font-mono text-sm;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  }
+  
+  /* Pulse Animation */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
+    }
+    to {
+      box-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+    }
+  }
+  
+  /* Navigation Tabs */
+  .thunder-tabs .tab {
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .thunder-tabs .tab-active {
+    border-color: #0ff;
+    color: #0ff;
+    box-shadow: 0 2px 10px rgba(0, 255, 255, 0.3);
+  }
+  
+  /* Status Indicators */
+  .status-online {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.125rem 0.375rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background-color: #22c55e;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  }
+  
+  .status-offline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.125rem 0.375rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background-color: #ef4444;
+    color: white;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+  
+  .status-warning {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.125rem 0.375rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background-color: #eab308;
+    color: black;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+  }
+}
+
+/* Phoenix Framework specific styles */
+.phx-no-feedback.invalid-feedback,
+.phx-no-feedback .invalid-feedback {
+  display: none;
+}
+
+.phx-click-loading {
+  opacity: 0.5;
+  transition: opacity 1s ease-out;
+}
+
+.phx-loading{
+  cursor: wait;
+}
+
+.phx-modal {
+  opacity: 1!important;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.phx-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.phx-modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.phx-modal-close:hover,
+.phx-modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.fade-in-scale {
+  animation: 0.2s ease-in 0s normal forwards 1 fade-in-scale-keys;
+}
+
+.fade-out-scale {
+  animation: 0.2s ease-out 0s normal forwards 1 fade-out-scale-keys;
+}
+
+.fade-in {
+  animation: 0.2s ease-out 0s normal forwards 1 fade-in-keys;
+}
+.fade-out {
+  animation: 0.2s ease-out 0s normal forwards 1 fade-out-keys;
+}
+
+@keyframes fade-in-scale-keys{
+  0% { scale: 0.95; opacity: 0; }
+  100% { scale: 1.0; opacity: 1; }
+}
+
+@keyframes fade-out-scale-keys{
+  0% { scale: 1.0; opacity: 1; }
+  100% { scale: 0.95; opacity: 0; }
+}
+
+@keyframes fade-in-keys{
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out-keys{
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
